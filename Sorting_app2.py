@@ -152,6 +152,16 @@ class sorting_App:
         )
         self.lbl_other_image.place(x=1005,y=60,width=230,height=200)
 
+    #==========Section-4==========#
+        lbl_Status=Label(self.root,text="STATUS",font=("times new roman",20),bg="white").place(x=50,y=620)
+        lbl_Status=Label(self.root,text="TOTAL:250",font=("times new roman",18),bg="white",fg="green").place(x=300,y=620)
+        lbl_Status=Label(self.root,text="MOVED:150",font=("times new roman",18),bg="white",fg="blue").place(x=500,y=620)
+        lbl_Status=Label(self.root,text="LEFT:182",font=("times new roman",18),bg="white",fg="orange").place(x=700,y=620)
+
+        btn_clear=Button(self.root,text="CLEAR",bd=4,relief=RAISED,font=("times new roman",15,"bold"),bg="#607d8b",fg="white",activebackground="#607d8b",cursor="hand2",activeforeground="white").place(x=880,y=610,height=45,width=200)
+        btn_start=Button(self.root,text="START",bd=4,relief=RAISED,font=("times new roman",15,"bold"),bg="#ff5722",fg="white",activebackground="#ff5722",cursor="hand2",activeforeground="white").place(x=1100,y=610,height=45,width=200)
+
+
 root = Tk()
 obj = sorting_App(root)
 root.mainloop()
