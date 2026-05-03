@@ -1,0 +1,81 @@
+# 📂 GUI File Sorting Application
+
+A Python-based GUI application that automatically organizes files into folders based on their extensions. Built using Tkinter for a simple and user-friendly interface.
+
+---
+
+## 🚀 Features
+
+- 📁 Select any folder from your system
+- ⚡ Automatically sorts files into categories:
+  - Images
+  - Videos
+  - Audio
+  - Documents
+  - Others
+- 📊 Displays real-time file counts
+- 🕒 Live digital clock UI
+- 📄 Documentation button (quick access)
+- 🎯 Clean and modern GUI design
+
+---
+## 🛠️ Technologies Used
+
+- Python 3.x
+- Tkinter (GUI)
+- PIL (Pillow)
+- OS Module
+- Shutil Module
+
+---
+## ⚙️ How It Works
+
+1. User selects a folder using the **Browse** button  
+2. Application scans all files  
+3. Files are categorized based on extensions  
+4. Folders are created automatically (if not exist)  
+5. Files are moved into respective folders  
+
+---
+## 💻 Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/file-sorting-app.git
+2. Navigate to project folder: 
+cd file-sorting-app
+
+3. Install dependencies:
+pip install pillow
+
+4.Run the application: 
+python Sorting_app2.py
+
+📂 Supported File Types
+| Category  | Extensions                      |
+| --------- | ------------------------------- |
+| Images    | .jpg, .png, .jpeg               |
+| Videos    | .mp4, .avi, .3gp                |
+| Audio     | .mp3, .wav                      |
+| Documents | .pdf, .docx, .xlsx, .pptx, .txt |
+| Others    | Any unsupported files           |
+
+🎯 Project Objectives
+Automate file organization
+Reduce manual effort
+Provide user-friendly GUI
+Improve system productivity
+
+🔮 Future Enhancements
+🔍 Duplicate file detection
+☁️ Cloud storage integration
+🤖 AI-based file classification
+📊 Progress bar & analytics
+
+👨‍💻 Author
+
+Vishal Bhamare
+MSc IT Student
+
+📜 License
+This project is for educational purposes.
