@@ -2,6 +2,8 @@ from tkinter import *
 from PIL import Image, ImageTk
 from tkinter import ttk,filedialog,messagebox
 import os,shutil
+from datetime import datetime
+import webbrowser
 class sorting_App:
     def __init__(self, root):
         self.root = root
@@ -26,6 +28,81 @@ class sorting_App:
         )
         title.place(x=0, y=0, relwidth=1)
 
+        self.btn_docs = Button(
+            self.root,
+            text="Documentation",
+            font=("times new roman", 15, "bold"),
+            bg="#1e1e1e",          # dark modern color
+            fg="white",
+            bd=0,                   # remove border
+            cursor="hand2",
+            activebackground="#333333",
+            activeforeground="white",
+            command=self.open_docs
+        )
+
+        self.btn_docs.place(relx=1, x=-300, y=23, anchor="ne", width=150, height=50)
+        self.btn_docs.bind("<Enter>", self.on_enter_docs)
+        self.btn_docs.bind("<Leave>", self.on_leave_docs)
+        self.btn_docs.bind("<ButtonPress>", lambda e: self.btn_docs.config(bg="#bf360c"))
+        self.btn_docs.bind("<ButtonRelease>", lambda e: self.btn_docs.config(bg="#ff5722"))
+
+
+        self.clock_frame = Frame(self.root, bg="black", bd=4, relief=GROOVE)
+        self.clock_frame.place(relx=1, x=-20, y=6, anchor="ne", width=250, height=75)  
+
+        self.lbl_clock = Label(
+        self.clock_frame,
+        font=("digital-7", 25, "bold"),  # or ("Consolas", 18, "bold")
+        bg="black",
+        fg="#ff3b3b"   # bright red
+    )
+        self.lbl_clock.pack(expand=True)      
+        
+        self.update_time()
+
+        self.footer_frame = Frame(self.root, bg="#023548")
+        self.footer_frame.place(x=0, y=685, relwidth=1, height=30)
+
+        self.footer_label = Label(
+        self.footer_frame,
+        text="Developed by Vishal Bhamare | Techashlabs | For more projects visit:",
+        bg="#023548",
+        fg="white",
+        font=("times new roman", 12)
+    )
+        self.footer_label.pack(side=LEFT, padx=10)
+
+        self.github_link = Label(
+        self.footer_frame,
+        text="GitHub",
+        fg="#00acee",
+        bg="#023548",
+        cursor="hand2",
+        font=("times new roman", 12, "underline")
+    )
+        self.github_link.pack(side=LEFT, padx=5)
+
+        self.github_link.bind("<Button-1>", lambda e: self.open_github())
+
+        self.portfolio_link = Label(
+        self.footer_frame,
+        text="Portfolio",
+        fg="#00acee",
+        bg="#023548",
+        cursor="hand2",
+        font=("times new roman", 12, "underline")
+    )
+        self.portfolio_link.pack(side=LEFT, padx=5)
+
+        self.portfolio_link.bind("<Button-1>", lambda e: self.open_portfolio())
+
+        self.github_link.bind("<Enter>", lambda e: self.github_link.config(fg="yellow"))
+        self.github_link.bind("<Leave>", lambda e: self.github_link.config(fg="#00acee"))
+
+        self.portfolio_link.bind("<Enter>", lambda e: self.portfolio_link.config(fg="yellow"))
+        self.portfolio_link.bind("<Leave>", lambda e: self.portfolio_link.config(fg="#00acee"))
+
         #==========Section-1==========#
         self.var_foldername=StringVar()
         lbl_Select_folder=Label(self.root,text="Select Folder",font=("times new roman",25),bg="white").place(x=50,y=100)
@@ -48,7 +125,7 @@ class sorting_App:
                 
         }
 
-        lbl_Support_ext=Label(self.root,text="Various Support Extensions",font=("times new roman",25),bg="white").place(x=50,y=170)
+        lbl_Support_ext=Label(self.root,text="Various Supported Extensions",font=("times new roman",25),bg="white").place(x=50,y=170)
         self.image_box=ttk.Combobox(self.root,values=self.image_extensions,font=("times new roman",15),state='readonly',justify=CENTER)
         self.image_box.place(x=60,y=230,width=270,height=35)
         self.image_box.current(0)
@@ -220,7 +297,14 @@ class sorting_App:
 
     def browse_function(self):
         op=filedialog.askdirectory(title="SELECT FOLDER FOR SORTING")
-        if op!=None:
+        if op:   # ✅ FIXED
+           self.var_foldername.set(op)
+           self.directry = op
+           self.other_name = "others"
+
+           self.rename_folder()
+           self.all_files = os.listdir(self.directry)
+           self.Total_count()
            # print(op)
            self.var_foldername.set(str(op))
            self.directry =self.var_foldername.get()
@@ -304,6 +388,33 @@ class sorting_App:
                 os.path.join(self.directry, file_name),
                 os.path.join(other_path, file_name)
             )
+
+    def update_time(self):
+        current_time = datetime.now().strftime("%I:%M:%S %p")
+        self.lbl_clock.config(text=current_time)
+        self.lbl_clock.after(1000, self.update_time)
+
+
+    def open_docs(self):
+        webbrowser.open("https://github.com/VishalMilindBhamare/file-sorting-application/commit/e2e9a12f60aeff7bd4f8f4123882dfd47a21797c")
+
+    def on_enter_docs(self, e):
+        self.btn_docs.config(
+            bg="#ff5722",   # highlight color (orange/red)
+            fg="white"
+        )
+
+    def on_leave_docs(self, e):
+        self.btn_docs.config(
+            bg="#1e1e1e",
+            fg="white"
+        )
+
+    def open_github(self):
+        webbrowser.open("https://github.com/VishalMilindBhamare")
+
+    def open_portfolio(self):
+        webbrowser.open("https://vishalmilindbhamare.github.io/Dynamic-Personal-Portfolio-/")
 
 root = Tk()
 obj = sorting_App(root)
